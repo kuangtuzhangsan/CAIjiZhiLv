@@ -1,4 +1,4 @@
-package com.xyx;
+package com.xyx.leetcode;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;

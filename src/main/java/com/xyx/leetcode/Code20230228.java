@@ -1,4 +1,4 @@
-package com.xyx;
+package com.xyx.leetcode;
 
 public class Code20230228 {
     public static int numberOfSteps(int num) {

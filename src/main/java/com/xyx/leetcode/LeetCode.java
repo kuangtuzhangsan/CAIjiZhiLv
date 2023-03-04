@@ -1,4 +1,4 @@
-package com.xyx;
+package com.xyx.leetcode;
 
 public class LeetCode {
 

@@ -1,4 +1,4 @@
-package com.xyx;
+package com.xyx.leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
