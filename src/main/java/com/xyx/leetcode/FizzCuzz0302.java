@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FizzCuzz0302 {
+
+    FizzCuzz0302 abc ;
     public List<String> fizzBuzz(int n) {
 
         List<String> list =new ArrayList<String>();
