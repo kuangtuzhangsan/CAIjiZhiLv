@@ -1,30 +1,85 @@
 package com.xyx.leetcode;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 
 public class LeetCode0330 {
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(lengthOfLongestSubstring(""));
     }
     /*
     * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+    * 去重是个错误的想法
+    * 使用滑动窗口
     * */
-    HashSet<String> set = new HashSet();
+//    2023年7月5日，判断窗口内字符串是否有重复字符即可，窗口从大到小，第一次无重复的时候就是最大的。
     public static int lengthOfLongestSubstring(String s) {
-        int length = s.length();
-        int num = 0 ;
-        for (int i = length-1; i > 0; i--) {
-            for (int j = i; j > 0 ; j--) {
-                String newStr = s.substring(j-1,i);
-                newStr = deduplication(newStr); // 去重
-                if (newStr.equals(s.substring(j-1,i))){
-                    num = newStr.length();
+        // 滑动窗口内部的字符串是否是不重复的即可
+        // 设置一个初始的窗口长度
+        // !!!!!!!执行结果超时了
+        char[] arrayChar = null ;
+        HashSet newSet = new HashSet<>();
+        String str = null ;
+        if (s.isEmpty())return 0;
+        for ( int i = s.length(); i > 0 ; i-- ) {
+            for (int j = 0; i + j <= s.length(); j++) {
+                str = s.substring(j, i+j);
+                arrayChar = str.toCharArray();
+                for(char newChar : arrayChar){
+                    newSet.add(newChar);
                 }
+                if (newSet.size() == i ) {
+                    System.out.println(str);
+                    return i;
+                }
+                newSet.removeAll(newSet);
             }
         }
-        return num;
+        return 1;
     }
+
+
+// 官方回答
+    static class Solution {
+        public static int lengthOfLongestSubstring(String s){
+            int[] last = new int[128];
+            for(int i = 0; i < 128; i++) {
+                last[i] = -1;
+            }
+            int n = s.length();
+            int res = 0;
+            int start = 0; // 窗口开始位置
+            for(int i = 0; i < n; i++) {
+                //ascii码表中的值相同时则说明字符重新出现
+                int index = s.charAt(i);
+                //last[index]+1表示从下一位数开始
+                start = Math.max(start, last[index] + 1);
+                //i - start + 1,当前长度
+                res   = Math.max(res, i - start + 1);
+                //对应ascii码值赋予位置值
+                last[index] = i;
+            }
+            return res;
+        }
+
+    }
+
+
+
+    public static Boolean isUnique(String str) {
+        Map<Character,Character> map = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (map.get(str.charAt(i))!= null){
+                return false;
+            } else {
+                map.put(str.charAt(i),'a');
+            }
+        }
+        return true;
+    }
+
     // 去重自己写的
     public static String deduplication (String s) {
         char[] array = s.toCharArray();
@@ -57,8 +112,8 @@ public class LeetCode0330 {
         }
         return arfa;
     }
-//去重结果：qw23er14t
 
+    //去重结果：qw23er14t
     public String ARFA2(String str) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < str.length(); i++) {
@@ -78,7 +133,8 @@ public class LeetCode0330 {
      5.再次将String类型rs转化为StringBuffer类型，并调用reverse()方法
      实现倒序，调用toString()方法转化为String类型
      **/
-//传参：str="qw23eqr123e4tt"
+
+    //传参：str="qw23eqr123e4tt"
     public String ARFA3(String str) {
         StringBuffer sb = new StringBuffer(str);
         String rs = sb.reverse().toString().replaceAll("(.)(?=.*\\1)", "");
