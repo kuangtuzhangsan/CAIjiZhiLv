@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class LeetCode0330 {
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring(""));
+        System.out.println(Solution.lengthOfLongestSubstring("abcdcdptrgta"));
     }
     /*
     * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
@@ -50,15 +50,15 @@ public class LeetCode0330 {
             }
             int n = s.length();
             int res = 0;
-            int start = 0; // 窗口开始位置
+            int start = 0; // 窗口开始位置 2.再次出现重复的字符，star一定会刷新，位置就发生了变化，从这里从新开始窗口
             for(int i = 0; i < n; i++) {
                 //ascii码表中的值相同时则说明字符重新出现
                 int index = s.charAt(i);
                 //last[index]+1表示从下一位数开始
-                start = Math.max(start, last[index] + 1);
-                //i - start + 1,当前长度
+                start = Math.max(start, last[index] + 1); // 4.如果再次出现重复的字符，窗口位置就发生了变化
+                //i - start + 1,当前长度  3.i是循环到字符串的下标了，而下标减去窗口开始位置一定是长度
                 res   = Math.max(res, i - start + 1);
-                //对应ascii码值赋予位置值
+                //对应ascii码值赋予位置值 1.这里可以记住字符出现的位置信息，再次出现的时候就可以刷新位置信息
                 last[index] = i;
             }
             return res;
