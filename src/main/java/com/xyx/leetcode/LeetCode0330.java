@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class LeetCode0330 {
     public static void main(String[] args) {
-        System.out.println(Solution.lengthOfLongestSubstring("abcdcdptrgta"));
+        System.out.println(Solution.lengthOfLongestSubstring("abcqdclptrgyuio"));
     }
     /*
     * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
@@ -41,7 +41,7 @@ public class LeetCode0330 {
     }
 
 
-// 官方回答
+// 官方回答 abcqdclptrgyuio
     static class Solution {
         public static int lengthOfLongestSubstring(String s){
             int[] last = new int[128];
@@ -50,7 +50,7 @@ public class LeetCode0330 {
             }
             int n = s.length();
             int res = 0;
-            int start = 0; // 窗口开始位置 2.再次出现重复的字符，star一定会刷新，位置就发生了变化，从这里从新开始窗口
+            int start = 0; // 窗口开始位置 2.再次出现重复的字符，start一定会刷新，位置就发生了变化，从这里从新开始窗口
             for(int i = 0; i < n; i++) {
                 //ascii码表中的值相同时则说明字符重新出现
                 int index = s.charAt(i);
