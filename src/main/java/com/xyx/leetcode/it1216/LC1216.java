@@ -1,6 +1,6 @@
 package com.xyx.leetcode.it1216;
 
-public class LC0116 {
+public class LC1216 {
      // 这个有缺陷
     public static String convert(String s, int numys) {
         int length = s.length();
