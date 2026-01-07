@@ -1,8 +1,4 @@
 package com.xyx.leetcode.it2024.it0104;
-
-import java.util.HashMap;
-import java.util.Map;
-
 // 整数转罗马数字
 //罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。
 //
@@ -76,7 +72,6 @@ import java.util.Map;
 // Related Topics 哈希表 数学 字符串 👍 1226 👎 0
 public class it0104another {
     // chatgpt
-    // 这个chatgpt回答似乎不正确
     public static String intToRoman(int num) {
         String res = "";
         int[] values = { 1000,900,500,400,100,90,50,40,10,9,5,4,1 };
@@ -92,35 +87,7 @@ public class it0104another {
     }
 
     public static void main(String[] args) {
-        System.out.println(romanToInt("MCMXCIV"));
-    }
-
-
-    public static int romanToInt(String s) {
-
-        HashMap<Character, Integer> romanChar = new HashMap<>();
-        romanChar.put('I', 1);
-        romanChar.put('V', 5);
-        romanChar.put('X', 10);
-        romanChar.put('L', 50);
-        romanChar.put('C', 100);
-        romanChar.put('D', 500);
-        romanChar.put('M', 1000);
-        int res = 0;
-        int currentValue = 0;
-        int nextValue = 0;
-        for (int i = 0; i < s.length(); i++) {
-            currentValue = romanChar.get(s.charAt(i));
-            if (i < s.length() -1){
-                nextValue = romanChar.get(s.charAt(i+1));
-            }
-            if (currentValue < nextValue){
-                res -= currentValue;
-            }else {
-                res += currentValue;
-            }
-        }
-        return res;
+        System.out.println(intToRoman(94));
     }
 
 }
